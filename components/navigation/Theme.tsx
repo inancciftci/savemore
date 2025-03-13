@@ -4,7 +4,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";

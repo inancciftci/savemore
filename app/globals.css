@@ -57,8 +57,8 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: var(--color-grey-100);
+  --foreground: var(--color-grey-900);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -93,8 +93,8 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
+  --background: var(--color-grey-900);
+  --foreground: var(--color-grey-100);
   --card: oklch(0.129 0.042 264.695);
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.129 0.042 264.695);
@@ -138,7 +138,7 @@
 
 @layer utilities {
   .container {
-    @apply max-w-[1200px] mx-auto px-4 py-2;
+    @apply max-w-[1200px] mx-auto px-4 py-4;
   }
   .text-h1 {
     @apply text-[32px] font-bold leading-[120%]
