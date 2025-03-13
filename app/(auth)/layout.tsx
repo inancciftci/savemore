@@ -1,3 +1,4 @@
+import AnnouncementBarText from "@/components/ui/announcementbar";
 import { PiggyBank } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,10 +41,22 @@ const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
           </Link>
         </div>
       </div>
-      <div className="hidden absolute max-md:block top-0 p-4 bg-grey-900 dark:bg-grey-100 w-[100%] left-[50%] translate-x-[-50%]">
-        <h1 className="text-h1 text-center text-grey-100 dark:text-grey-900">
-          SAVEMORE
-        </h1>
+      <div className="hidden absolute max-md:flex items-center justify-center top-0 p-4 bg-grey-900 dark:bg-grey-100 w-[100%] left-[50%] translate-x-[-50%]">
+        <Link href={"/"} className="cursor-pointer flex items-center gap-1">
+          <span className="font-bold rounded-md uppercase border-3 px-1.5 bg-red dark:bg-grey-100 text-grey-100 dark:text-red">
+            save
+          </span>
+          <div className="border-3 border-grey-100  flex items-center p-2 justify-center text-grey-100 bg-red rounded-full">
+            <PiggyBank size={25} />
+          </div>
+
+          <span className="font-bold rounded-md uppercase border-3 px-1.5 bg-red dark:bg-grey-100 text-grey-100 dark:text-red">
+            more
+          </span>
+        </Link>
+        <div className="bg-red min-h-[40px] flex items-center justify-center text-grey-100 w-full absolute top-[4.8rem] text-center">
+          <AnnouncementBarText text="Watch your money grow as you watch where it goes." />
+        </div>
       </div>
       <div className="flex items-center justify-center">{children}</div>
     </div>
