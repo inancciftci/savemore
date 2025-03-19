@@ -7,7 +7,7 @@ const DashboardLayout = ({
   children: Readonly<React.ReactNode>;
 }) => {
   return (
-    <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1 relative">
+    <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1 relative max-md:mb-[6rem]">
       <SidebarDesktop />
       <section className="container">
         <div className="mt-4 px-4">{children}</div>
