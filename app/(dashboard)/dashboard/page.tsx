@@ -24,10 +24,10 @@ const page = () => {
               </Link>
             </div>
             <div className="flex gap-4 h-[160px]">
-              <div className="w-[50%] flex">
+              <div className="w-[50%] max-md:w-[35%] flex">
                 <PotsTotalCard />
               </div>
-              <div className="w-[50%] h-[160px] flex flex-wrap content-between space-y-4">
+              <div className="w-[50%] max-md:w-[65%] h-[160px] flex flex-wrap content-between space-y-4">
                 <PotsItemCard title="Savings" amount="$159" />
                 <PotsItemCard title="Concert" amount="$110" />
                 <PotsItemCard title="Gift" amount="$10" />

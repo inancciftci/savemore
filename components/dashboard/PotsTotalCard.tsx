@@ -4,7 +4,7 @@ import React from "react";
 const PotsTotalCard = () => {
   return (
     <div className="bg-beige-100 dark:bg-grey-900 dark:text-grey-100 p-4 rounded-lg shadow-sm flex flex-col justify-between w-full h-full">
-      <div className="flex gap-6 items-center h-full">
+      <div className="flex max-md:flex-col gap-6 items-center h-full">
         <div className="relative size-[40px]">
           <Image
             className="dark:invert"
