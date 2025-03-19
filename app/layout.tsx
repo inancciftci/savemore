@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/context/ThemeProvider";
 
-const roboto = Roboto_Mono({
-  variable: "--font-public-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400", "700", "300", "500", "600"], // Add the required weight property
 });
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${roboto.className} antialiased `}>
+      <body className={`${poppins.className} antialiased `}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

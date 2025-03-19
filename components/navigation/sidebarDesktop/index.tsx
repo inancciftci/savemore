@@ -11,9 +11,9 @@ const SidebarDesktop = () => {
   const pathname = usePathname();
 
   return (
-    <div className=" min-h-[100vh] bg-grey-900 dark:bg-grey-100 text-grey-100 dark:text-grey-900 rounded-r-xl shadow-sm">
+    <div className="max-md:hidden min-h-[100vh] bg-grey-900 dark:bg-grey-100 text-grey-100 dark:text-grey-900 rounded-r-xl shadow-sm">
       <Image
-        className="mt-10 ml-6"
+        className="mt-10 ml-6 dark:invert"
         src={"/logo-large.svg"}
         alt="logo"
         width={121}

@@ -6,9 +6,11 @@ const DashboardLayout = ({
   children: Readonly<React.ReactNode>;
 }) => {
   return (
-    <div className="grid grid-cols-[300px_1fr]">
+    <div className="grid grid-cols-[300px_1fr] max-md:grid-cols-1">
       <SidebarDesktop />
-      <section className="container">{children}</section>
+      <section className="container">
+        <div className="mt-4 px-4">{children}</div>
+      </section>
     </div>
   );
 };
