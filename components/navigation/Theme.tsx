@@ -23,7 +23,10 @@ const Theme = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button
+          className="bg-grey-500 dark:bg-grey-900 dark:text-grey-100 dark:hover:bg-grey-500 cursor-pointer hover:bg-grey-100 hover:text-grey-900"
+          size="icon"
+        >
           {resolvedTheme === "dark" ? <Moon size={25} /> : <Sun size={25} />}
         </Button>
       </DropdownMenuTrigger>
