@@ -2,6 +2,7 @@ import React from "react";
 import Theme from "../Theme";
 import { PiggyBank } from "lucide-react";
 import Link from "next/link";
+import LoginButton from "../LoginButton";
 
 const DesktopHomeNavbar = () => {
   return (
@@ -18,7 +19,10 @@ const DesktopHomeNavbar = () => {
           more
         </span>
       </Link>
-      <Theme />
+      <div className="flex items-center gap-2">
+        <LoginButton />
+        <Theme />
+      </div>
     </div>
   );
 };

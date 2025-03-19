@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -8,8 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { signup } from "@/actions/auth-actions";
 
 const SignUpForm = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof RegisterFormSchema>>({
     resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
@@ -18,9 +20,18 @@ const SignUpForm = () => {
       password: "",
     },
   });
+  const handleSubmit = async (data: z.infer<typeof RegisterFormSchema>) => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    signup(formData);
+    setLoading(false);
+  };
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="name"
@@ -66,6 +77,7 @@ const SignUpForm = () => {
               </FormLabel>
               <FormControl>
                 <Input
+                  type="password"
                   className="dark:bg-grey-100"
                   placeholder="Enter your password"
                   required
@@ -75,7 +87,12 @@ const SignUpForm = () => {
             </FormItem>
           )}
         />
-        <Button className="w-full bg-grey-900 text-grey-100">Register</Button>
+        <Button
+          type="submit"
+          className="w-full dark:bg-grey-900 dark:text-grey-100 hover:translate-y-[-.3rem] bg-grey-900 cursor-pointer text-grey-100"
+        >
+          {loading ? "Signing up..." : "Register"}
+        </Button>
       </form>
       <p className="text-grey-500 text-sm text-center">
         You already have an account?{" "}

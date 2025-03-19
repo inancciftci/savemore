@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { login } from "@/actions/auth-actions";
 
 const SignInForm = () => {
   const form = useForm<z.infer<typeof LoginFormSchema>>({
@@ -17,9 +18,15 @@ const SignInForm = () => {
       password: "",
     },
   });
+  const onSubmit = (data: z.infer<typeof LoginFormSchema>) => {
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    login(formData);
+  };
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="email"
