@@ -9,7 +9,7 @@ interface IBudget {
 
 const BudgetsItemCard = ({ budget }: { budget: IBudget }) => {
   return (
-    <div className="flex gap-3 h-[40px]">
+    <div className="flex gap-3 h-[60px]">
       <div
         className="h-full w-[5px] rounded-lg"
         style={{ backgroundColor: budget.color }}

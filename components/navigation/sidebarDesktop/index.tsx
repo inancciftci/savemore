@@ -52,11 +52,11 @@ const SidebarDesktop = () => {
             key={i}
             href={l.href}
             className={cn(
-              "flex items-center gap-4 px-6 py-4 font-bold rounded-r-xl transition-all duration-300",
+              "flex items-center gap-4 px-6 py-4 font-bold rounded-r-xl border-l-4 border-grey-900 dark:border-grey-100 transition-all duration-300",
               collapsed && "px-0 pl-4 h-[40px] w-[55px]",
               "text-grey-100 dark:bg-grey-100 dark:text-grey-900",
               pathname === l.href &&
-                "dark:bg-grey-900 bg-grey-100 dark:text-grey-100 text-grey-900 border-l-4 border-green"
+                "dark:bg-grey-900 bg-grey-100 dark:text-grey-100 text-grey-900 border-l-4 border-green dark:border-green"
             )}
           >
             <Image src={l.icon} width={15} height={15} alt="icon" />
