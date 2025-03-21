@@ -15,7 +15,8 @@ const SignUpForm = () => {
   const form = useForm<z.infer<typeof RegisterFormSchema>>({
     resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
-      name: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
     },
@@ -23,7 +24,8 @@ const SignUpForm = () => {
   const handleSubmit = async (data: z.infer<typeof RegisterFormSchema>) => {
     setLoading(true);
     const formData = new FormData();
-    formData.append("name", data.name);
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
     formData.append("email", data.email);
     formData.append("password", data.password);
     signup(formData);
@@ -32,23 +34,51 @@ const SignUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-grey-900 text-[12px]">Name</FormLabel>
-              <FormControl>
-                <Input
-                  className="dark:bg-grey-100"
-                  placeholder="Enter your name"
-                  required
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+        <div className="flex gap-2 w-full">
+          <div className="w-[50%]">
+            <FormField
+              control={form.control}
+              name="first_name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-grey-900 text-[12px]">
+                    First Name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="dark:bg-grey-100"
+                      placeholder="Enter your first name"
+                      required
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="w-[50%]">
+            <FormField
+              control={form.control}
+              name="last_name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-grey-900 text-[12px]">
+                    Last Name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="dark:bg-grey-100"
+                      placeholder="Enter your last name"
+                      required
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
         <FormField
           control={form.control}
           name="email"

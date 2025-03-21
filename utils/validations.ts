@@ -12,9 +12,12 @@ export const LoginFormSchema = z.object({
 });
 
 export const RegisterFormSchema = z.object({
-  name: z
+  first_name: z
     .string()
     .min(2, { message: "Name must be at least 2 characters long." }),
+  last_name: z
+    .string()
+    .min(2, { message: "Last name must be at least 2 characters long." }),
   email: z
     .string()
     .min(1, { message: "Email is required" })

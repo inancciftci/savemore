@@ -16,15 +16,34 @@ export async function getUserSession() {
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
-  const data = {
+  const credentials = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const { error, data } = await supabase.auth.signInWithPassword(credentials);
 
   if (error) {
     redirect("/error");
+  }
+
+  const { data: existingUser } = await supabase
+    .from("user_profiles")
+    .select("*")
+    .eq("email", credentials?.email)
+    .limit(1)
+    .single();
+
+  if (!existingUser) {
+    const { error: insertError } = await supabase.from("user_profiles").insert({
+      email: data?.user.email,
+      first_name: data?.user.user_metadata?.first_name,
+      last_name: data?.user.user_metadata?.last_name,
+    });
+
+    if (insertError) {
+      return { status: insertError?.message, user: null };
+    }
   }
 
   revalidatePath("/", "layout");
@@ -42,7 +61,8 @@ export async function signOut() {
 export async function signup(formData: FormData) {
   const supabase = await createClient();
   const credentials = {
-    name: formData.get("name") as string,
+    first_name: formData.get("first_name") as string,
+    last_name: formData.get("last_name") as string,
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
@@ -55,7 +75,8 @@ export async function signup(formData: FormData) {
     options: {
       emailRedirectTo: `${redirectUrl}`,
       data: {
-        name: credentials.name,
+        first_name: credentials.first_name,
+        last_name: credentials.last_name,
       },
     },
   });

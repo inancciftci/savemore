@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/context/ThemeProvider";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
   subsets: ["latin"],
-  weight: ["400", "700", "300", "500", "600"], // Add the required weight property
+  weight: ["400", "700"], // Add the required weight property
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.className} antialiased `}>
+      <body className={`${ubuntu.className} antialiased `}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

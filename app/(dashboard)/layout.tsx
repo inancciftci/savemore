@@ -1,4 +1,4 @@
-import { getCategories } from "@/actions/budget-actions";
+import { getBudgets, getCategories } from "@/actions/budget-actions";
 import SidebarDesktop from "@/components/navigation/sidebarDesktop";
 import SidebarMobile from "@/components/navigation/sidebarMobile";
 import Theme from "@/components/navigation/Theme";
@@ -11,9 +11,11 @@ const DashboardLayout = async ({
 }) => {
   const categoriesResponse = await getCategories();
   const categoriesData = (await categoriesResponse?.categories) || [];
+  const budgetsResponse = await getBudgets();
+  const budgetsData = (await budgetsResponse?.budgets) || [];
   return (
     <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1 relative max-md:mb-[6rem]">
-      <DashboardProvider categories={categoriesData}>
+      <DashboardProvider categories={categoriesData} budgets={budgetsData}>
         <SidebarDesktop />
         <section className="container">
           <div className="mt-4 px-4">{children}</div>

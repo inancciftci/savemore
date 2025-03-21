@@ -1,7 +1,12 @@
+"use client";
 import AddBudgetForm from "@/components/budgets/AddBudgetForm";
+import { useDashboardData } from "@/context/DashboardProvider";
 import React from "react";
 
 const BudgetsPage = () => {
+  const context = useDashboardData();
+  const budgets = context.budgets || [];
+  console.log(budgets);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-center justify-between">
@@ -10,7 +15,11 @@ const BudgetsPage = () => {
         <AddBudgetForm />
       </div>
       <div className="grid grid-cols-[40%_1fr] gap-10">
-        <div>x</div>
+        <div>
+          {budgets.map((budget) => (
+            <p key={budget.id}>{budget.category.title}</p>
+          ))}
+        </div>
         <div>y</div>
       </div>
     </div>

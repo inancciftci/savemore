@@ -10,7 +10,7 @@ import {
 } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
-import { useCategories } from "@/context/DashboardProvider";
+import { useDashboardData } from "@/context/DashboardProvider";
 import { X } from "lucide-react";
 import { z } from "zod";
 import { AddBudgetSchema } from "@/lib/validations";
@@ -24,39 +24,45 @@ import {
 } from "../ui/select";
 import { Input } from "../ui/input";
 import { themes } from "@/constants/theme";
-
-const dummyBudgets = [
-  {
-    id: 1,
-    maximumSpend: 3000,
-    theme: "Purple",
-    categoryTitle: "4",
-  },
-  {
-    id: 2,
-    maximumSpend: 3000,
-    theme: "Red",
-    categoryTitle: "3",
-  },
-];
+import { createBudget } from "@/actions/budget-actions";
 
 const AddBudgetForm = () => {
-  const context = useCategories();
-  const categories = context || [];
+  const context = useDashboardData();
+  const categories = context.categories || [];
+  const budgets = context.budgets || [];
+  const [loading, setLoading] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const usedThemes = new Set(dummyBudgets.map((budget) => budget.theme));
+  const usedThemes = new Set(budgets?.map((budget) => budget.theme));
+  const usedCategories = new Set(
+    budgets?.map((budget) => budget.category.title)
+  );
   const form = useForm<z.infer<typeof AddBudgetSchema>>({
     resolver: zodResolver(AddBudgetSchema),
     defaultValues: {
-      categoryTitle: "",
+      categoryTitle: undefined,
       maximumSpend: undefined,
       theme: "",
     },
   });
 
-  const onSubmit = (data: z.infer<typeof AddBudgetSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof AddBudgetSchema>) => {
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("categoryTitle", data.categoryTitle.toString());
+      formData.append("maximumSpend", data.maximumSpend.toString());
+      formData.append("Theme", data.theme);
+
+      await createBudget(formData);
+    } catch (error) {
+      console.error("Error creating budget:", error);
+    } finally {
+      setLoading(false);
+      setModalOpen(false);
+    }
   };
+
   return (
     <>
       <Button
@@ -106,8 +112,14 @@ const AddBudgetForm = () => {
                             className="w-full"
                             key={cat.id}
                             value={String(cat.id)}
+                            disabled={usedCategories.has(cat.title)}
                           >
-                            {cat.title}
+                            <div className="flex gap-2">
+                              <div>{cat.title}</div>
+                              {usedCategories.has(cat.title) && (
+                                <div className="text-red">(Already used)</div>
+                              )}
+                            </div>
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -117,6 +129,7 @@ const AddBudgetForm = () => {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="maximumSpend"
@@ -193,8 +206,9 @@ const AddBudgetForm = () => {
               <Button
                 className="w-full py-6 font-[600] cursor-pointer"
                 type="submit"
+                disabled={loading}
               >
-                + Add Budget
+                {loading ? "Creating budget..." : "+ Add Budget"}
               </Button>
             </form>
           </Form>
