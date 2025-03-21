@@ -1,5 +1,6 @@
 "use client";
 import AddBudgetForm from "@/components/budgets/AddBudgetForm";
+import BudgetCard from "@/components/budgets/BudgetCard";
 import { useDashboardData } from "@/context/DashboardProvider";
 import React from "react";
 
@@ -20,7 +21,11 @@ const BudgetsPage = () => {
             <p key={budget.id}>{budget.category.title}</p>
           ))}
         </div>
-        <div>y</div>
+        <div className="flex flex-col gap-10">
+          {budgets?.map((budget) => (
+            <BudgetCard key={budget.id} budget={budget} />
+          ))}
+        </div>
       </div>
     </div>
   );
