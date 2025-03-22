@@ -26,10 +26,17 @@ import { Input } from "../ui/input";
 import { themes } from "@/constants/theme";
 import { createBudget } from "@/actions/budget-actions";
 
-const AddBudgetForm = () => {
+import { Dispatch, SetStateAction } from "react";
+
+const AddBudgetForm = ({
+  setBudgetsArr,
+}: {
+  setBudgetsArr: Dispatch<SetStateAction<IBudget[]>>;
+}) => {
   const context = useDashboardData();
   const categories = context.categories || [];
   const budgets = context.budgets || [];
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const usedThemes = new Set(budgets?.map((budget) => budget.theme));
@@ -47,12 +54,21 @@ const AddBudgetForm = () => {
 
   const onSubmit = async (data: z.infer<typeof AddBudgetSchema>) => {
     setLoading(true);
-
     try {
       const formData = new FormData();
       formData.append("categoryTitle", data.categoryTitle.toString());
       formData.append("maximumSpend", data.maximumSpend.toString());
       formData.append("Theme", data.theme);
+
+      setBudgetsArr((prev: IBudget[]) => [
+        ...prev,
+        {
+          category: { id: Number(data.categoryTitle), title: selectedCategory },
+          id: prev.length + 2,
+          maximum_spend: data.maximumSpend,
+          theme: data.theme,
+        },
+      ]);
 
       await createBudget(formData);
     } catch (error) {
@@ -98,7 +114,13 @@ const AddBudgetForm = () => {
                       Budget Category
                     </FormLabel>
                     <Select
-                      onValueChange={field.onChange}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        const category = categories.find(
+                          (cat) => String(cat.id) === value
+                        );
+                        setSelectedCategory(category?.title || "");
+                      }}
                       defaultValue={field.value}
                     >
                       <FormControl>

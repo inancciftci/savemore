@@ -5,11 +5,11 @@ interface ICategory {
 }
 
 interface IBudget {
-  id: number;
-  created_at: string;
+  id?: number;
+  created_at?: string;
   maximum_spend: number;
   theme: string;
-  user_id: string;
+  user_id?: string;
   category: {
     id: number;
     title: string;

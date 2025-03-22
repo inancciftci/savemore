@@ -5,12 +5,12 @@ const BudgetCard = ({ budget }: { budget: IBudget }) => {
   const budgetTheme = themes.find((theme) => theme.title === budget.theme);
   const progressWidth = (250 / budget.maximum_spend) * 100;
   return (
-    <div className="bg-white p-6 rounded-lg flex flex-col gap-4">
-      <div className="flex gap-2 items-center">
+    <div className="bg-white p-6 rounded-lg flex flex-col gap-4 shadow-md">
+      <div className="flex gap-3 items-center">
         <div
           className={`${budgetTheme?.background} size-[15px] rounded-full`}
         ></div>
-        <h3 className="text-h3">{budget.category.title}</h3>
+        <h2 className="text-h2">{budget.category.title}</h2>
       </div>
       <span className="text-grey-500 text-[12px]">
         Maximum of ${budget.maximum_spend}
