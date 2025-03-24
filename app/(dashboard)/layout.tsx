@@ -1,4 +1,5 @@
 import { getBudgets, getCategories } from "@/actions/budget-actions";
+import { getPots } from "@/actions/pot-actions";
 import { getTransactions } from "@/actions/transaction-actions";
 import { getUserDetails } from "@/actions/user-actions";
 import SidebarDesktop from "@/components/navigation/sidebarDesktop";
@@ -17,6 +18,8 @@ const DashboardLayout = async ({
   const transactionsData = (await transcationsResponse?.transactions) || [];
   const categoriesResponse = await getCategories();
   const categoriesData = (await categoriesResponse?.categories) || [];
+  const potsResponse = await getPots();
+  const potsData = (await potsResponse?.pots) || [];
   const budgetsResponse = await getBudgets();
   const budgetsData = (await budgetsResponse?.budgets) || [];
   return (
@@ -26,6 +29,7 @@ const DashboardLayout = async ({
         categories={categoriesData}
         budgets={budgetsData}
         transactions={transactionsData}
+        pots={potsData}
       >
         <SidebarDesktop />
         <section className="container">

@@ -34,3 +34,12 @@ interface ITransaction {
   type: string;
   user_id: string;
 }
+
+interface IPot {
+  created_at: string;
+  id: number;
+  theme: string;
+  title: string;
+  user_id: string;
+  pot_target: number;
+}

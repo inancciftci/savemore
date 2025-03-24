@@ -22,3 +22,11 @@ export const AddTransactionSchema = z.object({
     required_error: "Please select a type for the transaction",
   }),
 });
+
+export const AddPotSchema = z.object({
+  title: z.string().min(2, "Pot name should be at least 2 characters"),
+  pot_target: z.number().min(10, "Target must be at least 10"),
+  theme: z.string({
+    required_error: "You have to select a theme for the pot",
+  }),
+});
