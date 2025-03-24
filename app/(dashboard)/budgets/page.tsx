@@ -9,7 +9,6 @@ const BudgetsPage = () => {
   const context = useDashboardData();
   const budgets = context.budgets || [];
   const [budgetsArr, setBudgetsArr] = useState<IBudget[]>(budgets);
-  console.log(budgets);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-center justify-between">
@@ -17,7 +16,7 @@ const BudgetsPage = () => {
 
         <AddBudgetForm setBudgetsArr={setBudgetsArr} />
       </div>
-      <div className="grid grid-cols-[40%_1fr] gap-10">
+      <div className="grid grid-cols-[40%_1fr] gap-10 max-md:grid-cols-1">
         <div>
           <BudgetSummary budgets={budgets} />
         </div>

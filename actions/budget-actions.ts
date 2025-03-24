@@ -48,18 +48,16 @@ export const getBudgets = async () => {
     };
   }
 
-  // const transformedBudgets = budgetData.map((budget) => ({
-  //   id: budget.id,
-  //   created_at: budget.created_at,
-  //   category: budget.categories.title,
-  //   maximum_spend: budget.maximum_spend,
-  //   theme: budget.theme,
-  //   user_id: budget.user_id,
-  // }));
+  const transformedBudgetData = budgetData.map((budget) => ({
+    ...budget,
+    category: Array.isArray(budget.category)
+      ? budget.category[0]
+      : budget.category,
+  }));
 
   return {
     status: "success",
-    budgets: budgetData,
+    budgets: transformedBudgetData,
   };
 };
 

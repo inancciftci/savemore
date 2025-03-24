@@ -24,11 +24,12 @@ const Budgets = () => {
         </Link>
       </div>
       <div className="flex gap-2 items-center max-md:flex-col">
-        <div className="w-[70%] h-[250px]">
+        <div className="w-[70%] h-[250px] flex flex-col gap-2 items-center">
           <BudgetGraph budgets={budgets} />
+          <div className=""></div>
         </div>
 
-        <div className="flex flex-col gap-4 max-md:flex-row max-md:flex-wrap max-md:justify-center">
+        <div className="flex flex-col gap-4 max-md:flex-row max-md:mt-5 max-md:justify-center">
           {topBudgets.map((budget) => (
             <BudgetsItemCard budget={budget} key={budget.id} />
           ))}
