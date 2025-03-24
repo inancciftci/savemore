@@ -34,10 +34,10 @@ const PotCard = ({ pot }: { pot: IPot }) => {
         </span>
       </div>
       <div className="grid grid-cols-2 gap-5">
-        <Button className="bg-grey-100 text-grey-900 py-6 font-bold">
+        <Button className="bg-grey-100 text-grey-900 py-6 font-bold cursor-pointer hover:translate-y-[-4px] ease-in-out transition-[translate] duration-300">
           + Add Money
         </Button>
-        <Button className="bg-grey-100 text-grey-900 py-6 font-bold">
+        <Button className="bg-grey-100 text-grey-900 py-6 font-bold cursor-pointer hover:translate-y-[-4px] ease-in-out transition-[translate] duration-300">
           Withdraw
         </Button>
       </div>

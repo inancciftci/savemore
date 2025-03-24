@@ -90,12 +90,12 @@ const AddTransactionForm = ({ categories }: { categories: string[] }) => {
         + Add New Transaction
       </Button>
       {modalOpen && (
-        <div className="h-[100vh] w-full bg-[rgba(0,0,0,0.3)] fixed top-0 left-0 flex justify-center items-center">
+        <div className="z-[999] h-[100vh] w-full bg-[rgba(0,0,0,0.3)] fixed top-0 left-0 flex justify-center items-center">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               noValidate
-              className="z-101 bg-white dark:bg-grey-100 p-10 relative rounded-lg shadow-sm min-w-[500px] max-md:min-w-[90%] space-y-10"
+              className="z-[1000] bg-white dark:bg-grey-100 p-10 relative rounded-lg shadow-sm min-w-[500px] max-md:min-w-[90%] space-y-10"
             >
               <div className="flex items-center justify-between">
                 <h2 className="text-h2 dark:text-grey-900">
@@ -147,7 +147,7 @@ const AddTransactionForm = ({ categories }: { categories: string[] }) => {
                           <SelectValue placeholder="Select a category for the transaction" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="z-[1050]">
                         <SelectGroup>
                           <SelectLabel>Income</SelectLabel>
                           <SelectItem value="income">Income</SelectItem>

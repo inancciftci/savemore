@@ -66,7 +66,15 @@ export const getTransactions = async () => {
 
   const { data: transactionData, error: transactionError } = await supabase
     .from("transaction")
-    .select("*")
+    .select(
+      `
+    id, created_at, user_id, recipient_sender, amount, type, budget_id,
+    budget:budget_id (
+      id, category_id,
+      categories:category_id (title)
+    )
+  `
+    )
     .eq("user_id", userId);
 
   if (transactionError) {
@@ -76,8 +84,25 @@ export const getTransactions = async () => {
     };
   }
 
+  const formattedTransactions =
+    transactionData?.map((transaction) => ({
+      ...transaction,
+      budget:
+        transaction.budget && transaction.budget.length > 0
+          ? {
+              id: transaction.budget[0].id,
+              category_id: transaction.budget[0].category_id,
+              categories:
+                transaction.budget[0].categories &&
+                transaction.budget[0].categories.length > 0
+                  ? { title: transaction.budget[0].categories[0].title }
+                  : { title: "" },
+            }
+          : undefined,
+    })) || [];
+
   return {
     status: "true",
-    transactions: transactionData,
+    transactions: formattedTransactions,
   };
 };

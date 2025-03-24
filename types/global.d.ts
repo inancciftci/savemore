@@ -28,6 +28,13 @@ interface IUser {
 interface ITransaction {
   amount: number;
   budget_id?: number;
+  budget?: {
+    id: number;
+    categories: {
+      title: string;
+    };
+    category_id: number;
+  };
   created_at?: string;
   id: number;
   recipient_sender: string;
