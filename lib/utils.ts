@@ -21,3 +21,12 @@ export const formattedAmount = (num: number) => {
     maximumFractionDigits: 2,
   })}`;
 };
+
+export const formatDate = (isoString: string) => {
+  const date = new Date(isoString);
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+};

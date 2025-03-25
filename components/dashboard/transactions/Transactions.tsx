@@ -1,18 +1,14 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import TransactionCard from "./TransactionCard";
-
-const dummyTransactions = [
-  { id: "1", to: "Emma Richardson", amount: "$75", when: "19 Aug 2024" },
-  { id: "2", to: "Daniel Carter", amount: "-$45", when: "19 Aug 2024" },
-  { id: "3", to: "Migros", amount: "$96", when: "19 Aug 2024" },
-  { id: "4", to: "Getir", amount: "-$421", when: "19 Aug 2024" },
-  { id: "5", to: "Inanc Ciftci", amount: "-$90", when: "19 Aug 2024" },
-  { id: "6", to: "Doğalgaz", amount: "$30", when: "19 Aug 2024" },
-];
+import { useDashboardData } from "@/context/DashboardProvider";
 
 const Transactions = () => {
+  const context = useDashboardData();
+  const transactions = context?.transactions.slice(0, 5);
   return (
     <div className="p-6 bg-white dark:bg-grey-100 rounded-lg space-y-6">
       <div className="flex justify-between items-center">
@@ -25,7 +21,7 @@ const Transactions = () => {
         </Link>
       </div>
       <div className="flex flex-col gap-4">
-        {dummyTransactions.map((t) => (
+        {transactions.map((t) => (
           <TransactionCard key={t.id} transaction={t} />
         ))}
       </div>

@@ -7,11 +7,20 @@ import OverviewTopCard from "./OverviewTopCard";
 const OverviewTopSection = () => {
   const context = useDashboardData();
   const totalBalance = context?.totalBalance;
-  const amount = formattedAmount(totalBalance);
+  const transactions = context?.transactions;
+  const potsTotal = transactions
+    .filter((txn) => txn.pot_id !== null)
+    .reduce((total, txn) => total + txn.amount, 0);
   return (
     <div className="flex gap-3 items-stretch justify-center flex-wrap">
-      <OverviewTopCard title="Current Balance" amount={amount} />
-      <OverviewTopCard title="Saved in Pots" amount="$3,814.25" />
+      <OverviewTopCard
+        title="Current Balance"
+        amount={formattedAmount(totalBalance)}
+      />
+      <OverviewTopCard
+        title="Saved in Pots"
+        amount={formattedAmount(potsTotal)}
+      />
       <OverviewTopCard title="Monthly Expense" amount="$1,700.50" />
     </div>
   );

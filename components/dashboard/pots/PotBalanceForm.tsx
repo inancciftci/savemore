@@ -31,7 +31,15 @@ const withdrawSchema = z.object({
     .min(0.01, "Minimum amount is $0.01"),
 });
 
-const PotBalanceForm = ({ pot }: { pot: IPot }) => {
+const PotBalanceForm = ({
+  pot,
+  setPotTotal,
+  potTotal,
+}: {
+  pot: IPot;
+  potTotal: number;
+  setPotTotal: (value: number | ((prev: number) => number)) => void;
+}) => {
   const [loading, setLoading] = useState<boolean>(false);
   const context = useDashboardData();
   const userData = context?.user;
@@ -56,19 +64,27 @@ const PotBalanceForm = ({ pot }: { pot: IPot }) => {
   const onSubmitAdd = async (data: z.infer<typeof addMoneySchema>) => {
     setLoading(true);
     try {
-      addMoneyToPot(pot.id, data.amount, userFullName);
+      if (potTotal + data.amount > pot.pot_target) {
+        addMoneyForm.setError("amount", {
+          type: "manual",
+          message: "You can't add more than the target amount.",
+        });
+      } else {
+        addMoneyToPot(pot.id, data.amount, userFullName);
+        setPotTotal((prev: number) => prev + data.amount);
+        setLoading(false);
+        addMoneyForm.reset();
+        setActiveForm(null);
+      }
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false);
-      addMoneyForm.reset();
-      setActiveForm(null);
     }
   };
 
   const onSubmitWithdraw = async (data: z.infer<typeof withdrawSchema>) => {
     console.log("Withdrawing money:", data.amount);
     withdrawMoneyForm.reset();
+    setPotTotal((prev: number) => prev - data.amount);
     setActiveForm(null);
   };
 
@@ -124,6 +140,12 @@ const PotBalanceForm = ({ pot }: { pot: IPot }) => {
                         type="number"
                         placeholder="Enter amount to add"
                         {...field}
+                        value={field.value ?? ""}
+                        onChange={(e) =>
+                          field.onChange(
+                            e.target.value ? Number(e.target.value) : undefined
+                          )
+                        }
                         className="w-full"
                       />
                     </FormControl>

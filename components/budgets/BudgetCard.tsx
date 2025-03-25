@@ -1,9 +1,22 @@
+"use client";
 import { themes } from "@/constants/theme";
+import { useDashboardData } from "@/context/DashboardProvider";
 import React from "react";
+import BudgetSpendings from "./BudgetSpendings";
+import { formattedAmount } from "@/lib/utils";
 
 const BudgetCard = ({ budget }: { budget: IBudget }) => {
+  const context = useDashboardData();
+  const transactions = context?.transactions;
+  const relatedTxns = transactions.filter(
+    (txn) => txn.budget?.categories?.title === budget?.category?.title
+  );
+  const spentAmount = relatedTxns.reduce(
+    (total, txn) => total + Number(txn.amount),
+    0
+  );
   const budgetTheme = themes.find((theme) => theme.title === budget.theme);
-  const progressWidth = (250 / budget.maximum_spend) * 100;
+  const progressWidth = (spentAmount / budget.maximum_spend) * 100;
   return (
     <div className="bg-white p-6 rounded-lg flex flex-col gap-4 shadow-md">
       <div className="flex gap-3 items-center">
@@ -29,7 +42,7 @@ const BudgetCard = ({ budget }: { budget: IBudget }) => {
           ></div>
           <div className="flex flex-col justify-between">
             <span className="text-grey-500 text-[12px]">Spent</span>
-            <span className="font-bold">$250</span>
+            <span className="font-bold">{formattedAmount(spentAmount)}</span>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -40,6 +53,7 @@ const BudgetCard = ({ budget }: { budget: IBudget }) => {
           </div>
         </div>
       </div>
+      {spentAmount > 0 && <BudgetSpendings txns={relatedTxns} />}
     </div>
   );
 };

@@ -29,6 +29,8 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const potsData = potsResponse?.pots || [];
   const budgetsData = budgetsResponse?.budgets || [];
 
+  console.log(transactionsData);
+
   const totalBalance = calculateBalance(transactionsData);
   return (
     <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1 relative max-md:mb-[6rem]">

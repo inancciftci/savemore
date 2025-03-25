@@ -34,12 +34,17 @@ interface ITransaction {
       title: string;
     };
     category_id: number;
-  };
-  created_at?: string;
+  } | null;
+  created_at: string;
   id: number;
   recipient_sender: string;
   type: string;
   user_id: string;
+  pot_id?: number;
+  pot: {
+    id: number;
+    title: string;
+  };
 }
 
 interface IPot {

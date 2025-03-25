@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { TableCell, TableRow } from "../ui/table";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 
 const TransactionTableItem = ({
   transaction,
@@ -16,9 +16,14 @@ const TransactionTableItem = ({
       <TableCell className="text-[12px]">
         {transaction.type === "in"
           ? "Income"
-          : `${transaction?.budget?.categories.title}`}
+          : `${
+              transaction?.budget?.categories.title ||
+              `${transaction?.pot?.title} (Pot)`
+            }`}
       </TableCell>
-      <TableCell className="text-[12px]">19 Aug 2024</TableCell>
+      <TableCell className="text-[12px]">
+        {formatDate(transaction?.created_at)}
+      </TableCell>
       <TableCell
         className={cn(
           "font-bold text-green text-right",
