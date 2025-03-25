@@ -1,7 +1,7 @@
 import { themes } from "@/constants/theme";
 import { Ellipsis } from "lucide-react";
 import React from "react";
-import { Button } from "../ui/button";
+import PotBalanceForm from "../dashboard/pots/PotBalanceForm";
 
 const PotCard = ({ pot }: { pot: IPot }) => {
   const themeColor = themes.filter((theme) => theme.title === pot.theme)[0]
@@ -33,14 +33,7 @@ const PotCard = ({ pot }: { pot: IPot }) => {
           Target of ${pot.pot_target}
         </span>
       </div>
-      <div className="grid grid-cols-2 gap-5">
-        <Button className="bg-grey-100 text-grey-900 py-6 font-bold cursor-pointer hover:translate-y-[-4px] ease-in-out transition-[translate] duration-300">
-          + Add Money
-        </Button>
-        <Button className="bg-grey-100 text-grey-900 py-6 font-bold cursor-pointer hover:translate-y-[-4px] ease-in-out transition-[translate] duration-300">
-          Withdraw
-        </Button>
-      </div>
+      <PotBalanceForm pot={pot} />
     </div>
   );
 };

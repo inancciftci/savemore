@@ -72,3 +72,46 @@ export const getPots = async () => {
     pots: potsData,
   };
 };
+
+export const addMoneyToPot = async (
+  potId: number,
+  amount: number,
+  userFullName: string
+) => {
+  const supabase = await createClient();
+
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+
+  if (userError) {
+    return {
+      status: "false",
+      message: "Error fetching user",
+    };
+  }
+
+  const userId = userData?.user?.id;
+
+  const transactionData = {
+    user_id: userId,
+    recipient_sender: userFullName,
+    amount: amount,
+    type: "out",
+    pot_id: potId,
+  };
+
+  const { data: insertData, error: insertError } = await supabase
+    .from("transaction")
+    .insert(transactionData);
+
+  if (insertError) {
+    return {
+      status: "false",
+      message: "Error inserting pot data",
+    };
+  }
+
+  return {
+    status: "success",
+    transaction: insertData,
+  };
+};

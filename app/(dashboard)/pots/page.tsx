@@ -14,7 +14,7 @@ const PotsPage = () => {
         <h1 className="text-h1">Pots</h1>
         <AddPotForm pots={pots} />
       </div>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-2 gap-10 max-md:grid-cols-1">
         {pots?.map((pot) => (
           <PotCard key={pot.id} pot={pot} />
         ))}

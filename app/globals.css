@@ -157,3 +157,20 @@
     @apply text-[12px] leading-[150%]
   }
 }
+
+@keyframes slideDown {
+  0% { 
+    opacity: 0; 
+    transform: translateY(-20px) scaleY(0.9); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scaleY(1); 
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+  transform-origin: top;
+  transition: all 0.3s ease-out;
+}

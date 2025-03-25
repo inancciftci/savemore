@@ -7,6 +7,7 @@ interface DashboardContextType {
   user: IUser;
   transactions: ITransaction[];
   pots: IPot[];
+  totalBalance: number;
 }
 
 const DashboardContext = createContext<DashboardContextType>({
@@ -15,6 +16,7 @@ const DashboardContext = createContext<DashboardContextType>({
   user: { email: "", first_name: "", last_name: "", id: "" },
   transactions: [],
   pots: [],
+  totalBalance: 0,
 });
 
 interface DashboardProps {
@@ -24,6 +26,7 @@ interface DashboardProps {
   user: IUser;
   transactions: ITransaction[];
   pots: IPot[];
+  totalBalance: number;
 }
 
 const DashboardProvider = ({
@@ -33,10 +36,11 @@ const DashboardProvider = ({
   user,
   transactions,
   pots,
+  totalBalance,
 }: DashboardProps) => {
   return (
     <DashboardContext.Provider
-      value={{ transactions, user, categories, budgets, pots }}
+      value={{ totalBalance, transactions, user, categories, budgets, pots }}
     >
       {children}
     </DashboardContext.Provider>
