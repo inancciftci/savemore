@@ -49,7 +49,9 @@ const BudgetCard = ({ budget }: { budget: IBudget }) => {
           <div className="w-[3px] h-[40px] rounded-2xl bg-grey-100"></div>
           <div className="flex flex-col justify-between">
             <span className="text-grey-500 text-[12px]">Remaining</span>
-            <span className="font-bold">${budget.maximum_spend - 250}</span>
+            <span className="font-bold">
+              {formattedAmount(budget.maximum_spend - spentAmount)}
+            </span>
           </div>
         </div>
       </div>

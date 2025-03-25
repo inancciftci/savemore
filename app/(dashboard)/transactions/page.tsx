@@ -16,7 +16,7 @@ import React from "react";
 const TransactionsPage = () => {
   const context = useDashboardData();
   const budgets = context.budgets || [];
-  const transactions = context.transactions || [];
+  const transactions = context?.transactions || [];
   const usedCategories = budgets.map((budget) => budget.category.title);
   return (
     <div className="flex flex-col gap-10">

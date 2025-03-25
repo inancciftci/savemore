@@ -25,7 +25,13 @@ import {
 import { themes } from "@/constants/theme";
 import { addPot } from "@/actions/pot-actions";
 
-const AddPotForm = ({ pots }: { pots: IPot[] }) => {
+const AddPotForm = ({
+  pots,
+  setPots,
+}: {
+  pots: IPot[];
+  setPots: React.Dispatch<React.SetStateAction<IPot[]>>;
+}) => {
   const form = useForm<z.infer<typeof AddPotSchema>>({
     resolver: zodResolver(AddPotSchema),
     defaultValues: {
@@ -46,9 +52,16 @@ const AddPotForm = ({ pots }: { pots: IPot[] }) => {
       formData.append("title", data.title);
       formData.append("pot_target", data.pot_target?.toString() || "");
       formData.append("theme", data.theme);
-
       const response = await addPot(formData);
-
+      setPots((prev) => [
+        ...prev,
+        {
+          id: prev.length + 125123,
+          theme: data.theme,
+          title: data.title,
+          pot_target: data.pot_target,
+        },
+      ]);
       if (response?.status === "false") {
         console.error("Transaction failed:", response.message);
       } else {

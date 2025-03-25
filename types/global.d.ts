@@ -48,10 +48,10 @@ interface ITransaction {
 }
 
 interface IPot {
-  created_at: string;
+  created_at?: string;
   id: number;
   theme: string;
   title: string;
-  user_id: string;
+  user_id?: string;
   pot_target: number;
 }

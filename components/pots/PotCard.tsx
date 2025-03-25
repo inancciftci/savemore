@@ -1,9 +1,17 @@
 "use client";
 import { themes } from "@/constants/theme";
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, PenIcon, Trash2Icon } from "lucide-react";
 import React, { useState } from "react";
 import PotBalanceForm from "../dashboard/pots/PotBalanceForm";
 import { useDashboardData } from "@/context/DashboardProvider";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { deletePot } from "@/actions/pot-actions";
+import toast from "react-hot-toast";
 
 const PotCard = ({ pot }: { pot: IPot }) => {
   const context = useDashboardData();
@@ -16,7 +24,6 @@ const PotCard = ({ pot }: { pot: IPot }) => {
   const themeColor = themes.filter((theme) => theme.title === pot.theme)[0]
     .background;
   const progressWidth = ((potTotal / pot.pot_target) * 100).toFixed(2);
-  console.log();
   return (
     <div className="p-6 bg-white rounded-lg flex flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -24,7 +31,28 @@ const PotCard = ({ pot }: { pot: IPot }) => {
           <div className={`${themeColor} size-4 rounded-full`}></div>
           <h3 className="text-h3">{pot.title}</h3>
         </div>
-        <Ellipsis className="size-5 cursor-pointer" />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Ellipsis className="size-5 cursor-pointer" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="text-center">
+            <DropdownMenuItem
+              onClick={() => {
+                toast.success("Pot deleted successfully");
+                deletePot(pot.id);
+                setTimeout(() => {
+                  window.location.reload();
+                }, 500);
+              }}
+              className="font-bold cursor-pointer flex items-center text-[12px]"
+            >
+              <Trash2Icon className="size-4 text-red" /> Delete
+            </DropdownMenuItem>
+            <DropdownMenuItem className="font-bold cursor-pointer flex items-center text-[12px]">
+              <PenIcon className="size-4 text-orange-400" /> Edit
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="flex items-center justify-between">
         <span className="text-sm text-grey-500">Total Saved</span>

@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MoveRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import PotsTotalCard from "./PotsTotalCard";
@@ -35,20 +35,32 @@ const Pots = () => {
           See Details <ArrowRight size={14} />
         </Link>
       </div>
-      <div className="flex gap-4 h-[160px]">
-        <div className="w-[50%] max-md:w-[35%] flex">
-          <PotsTotalCard potsTotal={potsTotal} />
+      {pots.length > 0 ? (
+        <div className="flex gap-4 h-[160px]">
+          <div className="w-[50%] max-md:w-[35%] flex">
+            <PotsTotalCard potsTotal={potsTotal} />
+          </div>
+          <div className="w-[50%] max-md:w-[65%] h-[160px] flex flex-wrap content-between space-y-4">
+            {pots.slice(0, 4).map((p) => (
+              <PotsItemCard
+                key={p.id}
+                title={p.title}
+                amount={potSaved(p, potTransactions)}
+              />
+            ))}
+          </div>
         </div>
-        <div className="w-[50%] max-md:w-[65%] h-[160px] flex flex-wrap content-between space-y-4">
-          {pots.slice(0, 4).map((p) => (
-            <PotsItemCard
-              key={p.id}
-              title={p.title}
-              amount={potSaved(p, potTransactions)}
-            />
-          ))}
+      ) : (
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-red font-bold">There is no pots yet</span>
+          <Link
+            className="flex items-center gap-2 bg-grey-500 text-sm font-bold p-4 text-grey-100 rounded-lg"
+            href="/pots"
+          >
+            <MoveRightIcon className="size-5" /> Create your first pot
+          </Link>
         </div>
-      </div>
+      )}
     </div>
   );
 };

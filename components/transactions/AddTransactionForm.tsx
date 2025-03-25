@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import toast from "react-hot-toast";
 import {
   Form,
   FormControl,
@@ -31,6 +32,7 @@ import { addTransaction } from "@/actions/transaction-actions";
 const AddTransactionForm = ({ categories }: { categories: string[] }) => {
   const context = useDashboardData();
   const budgets = context?.budgets;
+  const totalBalance = context?.totalBalance;
   const form = useForm<z.infer<typeof AddTransactionSchema>>({
     resolver: zodResolver(AddTransactionSchema),
     defaultValues: {
@@ -55,25 +57,33 @@ const AddTransactionForm = ({ categories }: { categories: string[] }) => {
   const onSubmit = async (data: z.infer<typeof AddTransactionSchema>) => {
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("recipient_sender", data.recipient_sender);
-      formData.append("amount", data.amount.toString());
-      formData.append("type", data.type);
-
-      if (data.category !== "income") {
-        const categoryId =
-          budgets?.find((budget) => budget.category.title === data.category)
-            ?.id || "";
-        formData.append("budget_id", categoryId.toString());
-      }
-
-      const response = await addTransaction(formData);
-
-      if (response?.status === "false") {
-        console.error("Transaction failed:", response.message);
+      if (totalBalance <= 0 && data.type === "out") {
+        toast.error("Please add a balance first ");
       } else {
-        setModalOpen(false);
-        form.reset();
+        const formData = new FormData();
+        formData.append("recipient_sender", data.recipient_sender);
+        formData.append("amount", data.amount.toString());
+        formData.append("type", data.type);
+
+        if (data.category !== "income") {
+          const categoryId =
+            budgets?.find((budget) => budget.category.title === data.category)
+              ?.id || "";
+          formData.append("budget_id", categoryId.toString());
+        }
+
+        const response = await addTransaction(formData);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+
+        if (response?.status === "false") {
+          console.error("Transaction failed:", response.message);
+        } else {
+          setModalOpen(false);
+          form.reset();
+        }
       }
     } catch (error) {
       console.error("Error submitting transaction:", error);

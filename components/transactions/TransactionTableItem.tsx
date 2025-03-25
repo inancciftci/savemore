@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { TableCell, TableRow } from "../ui/table";
-import { cn, formatDate } from "@/lib/utils";
+import { cn, formatDate, formattedAmount } from "@/lib/utils";
 
 const TransactionTableItem = ({
   transaction,
@@ -30,7 +30,8 @@ const TransactionTableItem = ({
           transaction.type === "in" ? "text-green" : "text-red"
         )}
       >
-        {transaction.type === "in" ? "+" : "-"}${transaction.amount}
+        {transaction.type === "in" ? "+" : "-"}
+        {formattedAmount(transaction.amount)}
       </TableCell>
     </TableRow>
   );

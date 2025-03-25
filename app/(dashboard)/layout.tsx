@@ -7,6 +7,7 @@ import SidebarMobile from "@/components/navigation/sidebarMobile";
 import Theme from "@/components/navigation/Theme";
 import DashboardProvider from "@/context/DashboardProvider";
 import { calculateBalance } from "@/lib/utils";
+import { Toaster } from "react-hot-toast";
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const [
@@ -28,9 +29,6 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const categoriesData = categoriesResponse?.categories || [];
   const potsData = potsResponse?.pots || [];
   const budgetsData = budgetsResponse?.budgets || [];
-
-  console.log(transactionsData);
-
   const totalBalance = calculateBalance(transactionsData);
   return (
     <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1 relative max-md:mb-[6rem]">
@@ -50,6 +48,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
         <div className="hidden max-md:flex absolute top-[1rem] right-[1rem]">
           <Theme />
         </div>
+        <Toaster />
       </DashboardProvider>
     </div>
   );

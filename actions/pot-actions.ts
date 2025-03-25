@@ -115,3 +115,35 @@ export const addMoneyToPot = async (
     transaction: insertData,
   };
 };
+
+export const deletePot = async (potId: number) => {
+  const supabase = await createClient();
+
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+
+  if (userError) {
+    return {
+      status: "false",
+      message: "Error fetching user data",
+    };
+  }
+
+  const userId = userData?.user?.id;
+
+  const { error: deleteError } = await supabase
+    .from("pot")
+    .delete()
+    .eq("id", potId)
+    .eq("user_id", userId);
+
+  if (deleteError) {
+    return {
+      status: "false",
+      message: "Error deleting pot",
+    };
+  }
+  return {
+    status: "success",
+    message: "Pot deleted succesfully",
+  };
+};
