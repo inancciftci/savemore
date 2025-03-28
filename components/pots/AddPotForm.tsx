@@ -53,6 +53,7 @@ const AddPotForm = ({
       formData.append("pot_target", data.pot_target?.toString() || "");
       formData.append("theme", data.theme);
       const response = await addPot(formData);
+      setTimeout(() => window.location.reload(), 500);
       setPots((prev) => [
         ...prev,
         {

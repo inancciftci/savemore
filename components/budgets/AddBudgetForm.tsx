@@ -27,6 +27,7 @@ import { themes } from "@/constants/theme";
 import { createBudget } from "@/actions/budget-actions";
 
 import { Dispatch, SetStateAction } from "react";
+import toast from "react-hot-toast";
 
 const AddBudgetForm = ({
   setBudgetsArr,
@@ -71,6 +72,8 @@ const AddBudgetForm = ({
       ]);
 
       await createBudget(formData);
+      setTimeout(() => window.location.reload(), 300);
+      toast.success("Budget created succesfully");
     } catch (error) {
       console.error("Error creating budget:", error);
     } finally {
