@@ -3,11 +3,11 @@ import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
+import BillsTableItem from "./BillsTableItem";
 
 const BillsTable = () => {
   return (
@@ -28,39 +28,10 @@ const BillsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-bold">
-              Spark Electric Solutions
-            </TableCell>
-            <TableCell className="text-right text-green text-[12px]">
-              Monthly-2nd
-            </TableCell>
-            <TableCell className="text-right font-bold text-sm">
-              $100.00
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-bold">
-              Spark Electric Solutions
-            </TableCell>
-            <TableCell className="text-right text-green text-[12px]">
-              Monthly-2nd
-            </TableCell>
-            <TableCell className="text-right font-bold text-sm">
-              $100.00
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-bold">
-              Spark Electric Solutions
-            </TableCell>
-            <TableCell className="text-right text-green text-[12px]">
-              Monthly-2nd
-            </TableCell>
-            <TableCell className="text-right font-bold text-sm">
-              $100.00
-            </TableCell>
-          </TableRow>
+          <BillsTableItem />
+          <BillsTableItem />
+          <BillsTableItem />
+          <BillsTableItem />
         </TableBody>
       </Table>
     </div>

@@ -1,3 +1,4 @@
+import AddBillForm from "@/components/bills/AddBillForm";
 import BillsTable from "@/components/bills/BillsTable";
 import { Receipt } from "lucide-react";
 import React from "react";
@@ -7,7 +8,7 @@ const BillsPage = () => {
     <div className="flex flex-col gap-10">
       <div className="flex justify-between items-center">
         <h1 className="text-h1">Recurring Bills</h1>
-        <span className="font-bold">+ Add Bill</span>
+        <AddBillForm />
       </div>
       <div className="grid grid-cols-[auto_60%] gap-10">
         <div className="flex flex-col gap-10">

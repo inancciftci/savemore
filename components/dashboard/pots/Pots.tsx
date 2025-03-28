@@ -22,8 +22,6 @@ const Pots = () => {
       potTxns.reduce((total, txn) => total + txn.amount, 0)
     );
   };
-  console.log(pots);
-  console.log(potTransactions);
   return (
     <div className="p-6 bg-white dark:bg-grey-100 rounded-lg space-y-6">
       <div className="flex justify-between items-center">

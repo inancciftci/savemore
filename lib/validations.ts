@@ -30,3 +30,9 @@ export const AddPotSchema = z.object({
     required_error: "You have to select a theme for the pot",
   }),
 });
+
+export const AddBillSchema = z.object({
+  title: z.string().min(2, "Bill title should be at least 2 characters"),
+  bill_date: z.string().min(1, "You should enter a due date"),
+  amount: z.number().min(0.01, "Amount must be at least 0.01"),
+});
