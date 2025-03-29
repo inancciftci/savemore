@@ -11,7 +11,7 @@ export async function getUserSession() {
   if (error) {
     return null;
   }
-  return { status: "success", user: data.session?.user };
+  return data.session?.user;
 }
 
 export async function login(formData: FormData) {

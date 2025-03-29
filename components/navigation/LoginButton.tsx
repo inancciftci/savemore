@@ -2,19 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { signOut, getUserSession } from "@/actions/auth-actions";
-
-interface IUser {
-  status: string;
-  user: object;
-}
+import { User } from "@supabase/supabase-js";
 
 const LoginButton = () => {
-  const [user, setUser] = useState<IUser | null>();
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       const sessionUser = await getUserSession();
-      setUser(sessionUser);
+      setUser(sessionUser ?? null); // Ensure it is either User or null
     };
     fetchUser();
   }, []);
@@ -25,7 +21,9 @@ const LoginButton = () => {
   };
 
   return user ? (
-    <button onClick={handleLogout}>Log Out</button>
+    <button onClick={handleLogout}>
+      Welcome, {user?.user_metadata.first_name} {user?.user_metadata.last_name}
+    </button>
   ) : (
     <button>Login</button>
   );
