@@ -12,6 +12,14 @@ const DesktopHomeNavbar = () => {
       </Link>
       <div className="flex items-center gap-2">
         <LoginButton />
+        {" | "}
+        <Link
+          className="bg-grey-100 text-sm px-4 py-2 text-grey-900 rounded-lg"
+          href={"/dashboard"}
+        >
+          Dashboard
+        </Link>
+        {" | "}
         <Theme />
       </div>
     </div>
