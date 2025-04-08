@@ -40,7 +40,7 @@ const Budgets = () => {
             <div className=""></div>
           </div>
 
-          <div className="flex flex-col gap-4 max-md:flex-row max-md:mt-5 max-md:justify-center">
+          <div className="flex flex-col gap-4 max-md:flex-row max-md:mt-5 max-md:justify-center max-sm:grid max-sm:grid-cols-2 max-sm:gap-4 max-sm:w-full">
             {topBudgets.map((budget) => (
               <BudgetsItemCard budget={budget} key={budget.id} />
             ))}

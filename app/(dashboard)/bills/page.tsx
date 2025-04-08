@@ -10,7 +10,7 @@ const BillsPage = () => {
         <h1 className="text-h1">Recurring Bills</h1>
         <AddBillForm />
       </div>
-      <div className="grid grid-cols-[auto_60%] gap-10">
+      <div className="grid grid-cols-[auto_60%] gap-10 max-sm:grid-cols-1">
         <div className="flex flex-col gap-10">
           <div className="p-4 bg-grey-900 rounded-lg flex flex-col gap-4">
             <Receipt className="size-10 text-grey-100" />

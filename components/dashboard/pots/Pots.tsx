@@ -34,11 +34,11 @@ const Pots = () => {
         </Link>
       </div>
       {pots.length > 0 ? (
-        <div className="flex gap-4 h-[160px]">
-          <div className="w-[50%] max-md:w-[35%] flex">
+        <div className="flex gap-4 max-sm:flex-col">
+          <div className=" flex">
             <PotsTotalCard potsTotal={potsTotal} />
           </div>
-          <div className="w-[50%] max-md:w-[65%] h-[160px] flex flex-wrap content-between space-y-4">
+          <div className="w-[50%] max-md:w-[65%] max-sm:w-[100%] grid grid-cols-2 gap-4 justify-between">
             {pots.slice(0, 4).map((p) => (
               <PotsItemCard
                 key={p.id}

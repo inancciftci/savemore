@@ -22,8 +22,10 @@ const TransactionTable = ({
           <TableHead className="text-grey-500 text-[12px]">
             Recipient/Sender
           </TableHead>
-          <TableHead className="text-grey-500 text-[12px]">Category</TableHead>
-          <TableHead className="text-grey-500 text-[12px]">
+          <TableHead className="text-grey-500 text-[12px] max-sm:hidden">
+            Category
+          </TableHead>
+          <TableHead className="text-grey-500 text-[12px] max-sm:hidden">
             Transaction Date
           </TableHead>
           <TableHead className="text-grey-500 text-[12px] text-right">

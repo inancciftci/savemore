@@ -13,7 +13,7 @@ const TransactionTableItem = ({
       <TableCell className="font-bold">
         {transaction.recipient_sender}
       </TableCell>
-      <TableCell className="text-[12px]">
+      <TableCell className="text-[12px] max-sm:hidden">
         {transaction.type === "in"
           ? "Income"
           : `${
@@ -21,7 +21,7 @@ const TransactionTableItem = ({
               `${transaction?.pot?.title} (Pot)`
             }`}
       </TableCell>
-      <TableCell className="text-[12px]">
+      <TableCell className="text-[12px] max-sm:hidden">
         {formatDate(transaction?.created_at)}
       </TableCell>
       <TableCell

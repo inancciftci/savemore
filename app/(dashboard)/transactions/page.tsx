@@ -25,10 +25,10 @@ const TransactionsPage = () => {
         <AddTransactionForm categories={usedCategories} />
       </div>
       <div className="bg-white rounded-lg p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between max-sm:hidden">
           <Input className="w-[250px]" placeholder="Search transaction" />
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <span className="text-grey-500 text-sm">Sort by</span>
               <Select>
                 <SelectTrigger>
