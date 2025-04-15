@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SaveMore: Smart Finance Management
 
-## Getting Started
+<div align="center">
+  <img src="./public/logo-large.svg" alt="SaveMore Logo" width="400" />
+  <p>Track, Budget, and Save with Confidence</p>
+</div>
 
-First, run the development server:
+## 📊 Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+SaveMore is a comprehensive personal finance management platform that helps users take control of their finances. Built with Next.js, this application enables users to track income and expenses, set personalized budgets, manage savings goals, and monitor recurring bills—all in one intuitive dashboard.
+
+## ✨ Features
+
+- **💰 Comprehensive Dashboard**: Get a complete view of your finances at a glance
+- **📊 Smart Budgeting**: Create custom budgets for different spending categories
+- **🏦 Savings Pots**: Create dedicated savings pots for specific financial goals
+- **📝 Transaction Tracking**: Log and categorize all your transactions
+- **💸 Recurring Bills Management**: Track bills and get payment reminders
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js (App Router)
+- **Styling**: Tailwind CSS
+- **Authentication**: Supabase Auth
+- **Database**: Supabase
+- **State Management**: React Context
+- **UI Components**: Shadcn UI
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/savemore.git
+   cd savemore
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   # or
+   pnpm install
+   # or
+   bun install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   # or
+   bun dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📁 Project Structure
+
+```
+/app             - Next.js application routes
+/actions         - Server actions for data operations
+/components      - Reusable UI components
+/constants       - App constants
+/context         - React context providers
+/hooks           - Custom React hooks
+/lib             - Utility functions
+/public          - Static assets
+/utils           - Helper functions and services
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Project Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Home**: Landing page with feature overview
+- **Authentication**: Register and login pages
+- **Dashboard**: Main user interface with financial overview
+- **Budgets**: Create and manage category-based budgets
+- **Pots**: Set up and track savings goals
+- **Transactions**: Log and categorize income/expenses
+- **Bills**: Manage recurring bills and payments
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Security
 
-## Learn More
+SaveMore prioritizes user data security with:
+- Secure authentication system
+- Data encryption
+- Protected API routes
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 Philosophy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+SaveMore is designed to promote financial wellness through transparency, awareness, and goal-oriented saving. Our intuitive interface makes personal finance management accessible to everyone, regardless of financial expertise.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
 
-## Deploy on Vercel
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
