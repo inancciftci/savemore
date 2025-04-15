@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import DesktopHomeNavbar from "@/components/navigation/homeNavbar";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,15 +13,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[-1]">
-        <Image
-          src={"/bg.jpg"}
-          fill
-          alt="background image"
-          className="object-cover"
-        />
-      </div>
+    <div className="dark:bg-black bg-grey-100 min-h-screen">
       <DesktopHomeNavbar />
       {children}
     </div>
