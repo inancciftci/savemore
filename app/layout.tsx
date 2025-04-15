@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/context/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${ubuntu.className} antialiased `}>
         <ThemeProvider>{children}</ThemeProvider>
+        <Toaster position="top-right" />
       </body>
     </html>
   );

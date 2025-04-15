@@ -24,7 +24,7 @@ export async function login(formData: FormData) {
   const { error, data } = await supabase.auth.signInWithPassword(credentials);
 
   if (error) {
-    redirect("/error");
+    return { success: false, error: error.message };
   }
 
   const { data: existingUser } = await supabase
@@ -42,12 +42,10 @@ export async function login(formData: FormData) {
     });
 
     if (insertError) {
-      return { status: insertError?.message, user: null };
+      return { success: false, error: insertError.message };
     }
   }
-
-  revalidatePath("/", "layout");
-  redirect("/");
+  return { success: true };
 }
 
 export async function signOut() {
