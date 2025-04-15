@@ -37,7 +37,7 @@ SaveMore is a comprehensive personal finance management platform that helps user
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/savemore.git
+   git clone https://github.com/inancciftci/savemore.git
    cd savemore
    ```
 
