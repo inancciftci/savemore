@@ -11,7 +11,7 @@ const DesktopHomeNavbar = () => {
       </Link>
       <div className="flex items-center gap-2">
         <Link
-          className="bg-green px-4 py-2 rounded-lg font-bold text-sm 
+          className="bg-accent px-4 py-2 rounded-lg font-bold text-sm 
           hover:bg-green/50 transition-all duration-200 ease-in-out"
           href={"/dashboard"}
         >

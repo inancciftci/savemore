@@ -53,14 +53,16 @@ const Features = () => {
           />
         </div>
         <div className="flex flex-col gap-10">
-          <h2 className="text-h1 uppercase tracking-widest">Key Features</h2>
+          <h2 className="text-h1 uppercase text-accent tracking-widest">
+            Key Features
+          </h2>
           <Accordion type="single" collapsible className="w-full">
             {features.map((feature, index: number) => (
               <AccordionItem value={`item-${index + 1}`} key={feature.id}>
-                <AccordionTrigger className="font-bold cursor-pointer text-slate-200">
+                <AccordionTrigger className="font-bold text-xl cursor-pointer text-primary">
                   {feature.title}
                 </AccordionTrigger>
-                <AccordionContent className="text-slate-400">
+                <AccordionContent className="text-secondary">
                   {feature.description}
                 </AccordionContent>
               </AccordionItem>

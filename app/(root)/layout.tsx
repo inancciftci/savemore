@@ -13,7 +13,8 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="dark:bg-black bg-grey-100 min-h-screen">
+    <div className="min-h-screen relative">
+      <div className="fixed z-[-1] top-0 left-0 min-h-[100vh] w-[100%] bg-gradient-to-br from-accent/60 to-black/60"></div>
       <DesktopHomeNavbar />
       {children}
     </div>

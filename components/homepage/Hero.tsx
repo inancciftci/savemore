@@ -15,18 +15,18 @@ const Hero = () => {
         />
       </div>
       <div className="flex flex-col gap-6 items-center justify-center">
-        <h2 className="text-h1">Take Control of Your Finances</h2>
-        <h4 className="text-slate-400 text-h4">
+        <h2 className="text-h1 text-primary">Take Control of Your Finances</h2>
+        <h4 className="text-secondary text-h4">
           Track, Budget, and Save with Confidence
         </h4>
-        <p className="text-sm text-slate-300 w-[500px] text-center">
+        <p className="text-sm text-primary w-[500px] text-center">
           SaveMore helps you manage your money effortlessly. Track income and
           expenses, set personalized budgets, and reach your savings goals—all
           in one intuitive platform.
         </p>
         <Link
           href="/dashboard"
-          className="bg-slate-300 flex items-center px-4 py-2 gap-4 w-[170px] text-black rounded-lg font-bold"
+          className="bg-accent flex items-center px-4 py-2 gap-4 w-[170px] text-primary rounded-lg font-bold"
         >
           <ArrowRightToLine size={20} className="animate-pulse text-green" />{" "}
           Launch App
